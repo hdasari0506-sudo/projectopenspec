@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+node_modules/
+coverage/
+playwright-report/
+test-results/
+tests/node_modules/
+tests/playwright-report/
+tests/test-results/
