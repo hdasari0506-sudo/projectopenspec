@@ -3,50 +3,1766 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A starter project for spec-driven product and software engineering.">
-    <title>projectopenspec</title>
+    <meta name="description" content="Good days start with good dog care. Explore friendly breed guides, behavior tips, and everyday wellness advice at dogday.com.">
+    <meta name="theme-color" content="#f8f6f0">
+    <title>dogday.com — Good days start with good dog care</title>
+    <link rel="preconnect" href="https://images.unsplash.com">
     <style>
       :root {
         color-scheme: light;
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: #172033;
-        background: #f4f7fb;
+        --ink: #253b3d;
+        --muted: #667777;
+        --blue: #b9dce1;
+        --blue-deep: #356c73;
+        --blue-dark: #24565e;
+        --cream: #f8f6f0;
+        --sand: #eee9dd;
+        --white: #fffefa;
+        --brown: #825c43;
+        --brown-light: #f1e5d9;
+        --green: #58755f;
+        --line: #e5e2d9;
+        --shadow: 0 18px 50px rgb(40 58 54 / 9%);
+        font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--cream);
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 6rem;
       }
 
       body {
-        box-sizing: border-box;
-        display: grid;
-        min-height: 100vh;
+        min-width: 320px;
         margin: 0;
-        padding: 2rem;
-        place-items: center;
+        line-height: 1.6;
       }
 
-      main {
-        width: min(100%, 42rem);
-        padding: clamp(2rem, 7vw, 4rem);
-        border: 1px solid #dce4ef;
-        border-radius: 1.25rem;
-        background: #fff;
-        box-shadow: 0 1.5rem 4rem rgb(23 32 51 / 8%);
-      }
-
-      p {
-        color: #53627a;
-        line-height: 1.7;
+      img {
+        display: block;
+        width: 100%;
+        object-fit: cover;
       }
 
       a {
-        color: #174ea6;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      button,
+      a,
+      input,
+      select {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      select:focus-visible {
+        outline: 3px solid #d28b53;
+        outline-offset: 3px;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 10;
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.7rem 1rem;
+        transform: translateY(-180%);
+        border-radius: 0.7rem;
+        background: var(--ink);
+        color: white;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-header {
+        position: sticky;
+        z-index: 5;
+        top: 0;
+        border-bottom: 1px solid rgb(37 59 61 / 8%);
+        background: rgb(248 246 240 / 94%);
+        backdrop-filter: blur(16px);
+      }
+
+      .header-inner {
+        display: flex;
+        width: min(100% - 3rem, 1240px);
+        min-height: 78px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        margin: 0 auto;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        flex-shrink: 0;
+        font-size: 1.42rem;
+        font-weight: 850;
+        letter-spacing: -0.07em;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 2.35rem;
+        height: 2.35rem;
+        place-items: center;
+        border-radius: 50% 50% 45% 50%;
+        background: var(--blue);
+        font-size: 1.28rem;
+        letter-spacing: 0;
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 2.75rem;
+        height: 2.75rem;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 0.8rem;
+        background: var(--white);
+        color: var(--ink);
+        cursor: pointer;
+      }
+
+      .nav-row {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        gap: clamp(1rem, 2.4vw, 2.3rem);
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.9rem, 2vw, 1.8rem);
+      }
+
+      .primary-nav a {
+        color: #526465;
+        font-size: 0.91rem;
+        font-weight: 700;
+        transition: color 160ms ease;
+      }
+
+      .primary-nav a:hover {
+        color: var(--blue-dark);
+      }
+
+      .search-wrap {
+        position: relative;
+        width: clamp(160px, 18vw, 225px);
+      }
+
+      .search-wrap::before {
+        position: absolute;
+        top: 50%;
+        left: 0.8rem;
+        color: var(--muted);
+        content: "⌕";
+        font-size: 1.3rem;
+        line-height: 1;
+        transform: translateY(-55%);
+      }
+
+      .search-input {
+        width: 100%;
+        min-height: 42px;
+        padding: 0.6rem 0.8rem 0.6rem 2.25rem;
+        border: 1px solid #dfe3dc;
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--ink);
+        font-size: 0.83rem;
+      }
+
+      .hero {
+        overflow: hidden;
+        padding: clamp(3.2rem, 7vw, 6.5rem) 0 clamp(4rem, 7vw, 6.7rem);
+        background:
+          radial-gradient(ellipse at 77% 38%, rgb(210 231 227 / 72%), transparent 39%),
+          linear-gradient(115deg, #f8f6f0 12%, #f5f3ec 62%, #e9f1eb);
+      }
+
+      .hero-inner {
+        display: grid;
+        width: min(100% - 3rem, 1240px);
+        align-items: center;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: clamp(2rem, 6vw, 5.5rem);
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin: 0 0 1rem;
+        color: var(--blue-deep);
+        font-size: 0.77rem;
+        font-weight: 850;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 1.5rem;
+        height: 2px;
+        background: #89b7bd;
+        content: "";
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 600;
+        letter-spacing: -0.045em;
+      }
+
+      h1 {
+        max-width: 650px;
+        margin-bottom: 1.15rem;
+        font-size: clamp(3.2rem, 6vw, 5.6rem);
+        line-height: 0.99;
+      }
+
+      h1 em {
+        color: var(--brown);
+        font-weight: 500;
+      }
+
+      .hero-copy {
+        max-width: 530px;
+        margin-bottom: 1.8rem;
+        color: #627172;
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 49px;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0.75rem 1.25rem;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 0.92rem;
+        font-weight: 800;
+        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        background: var(--blue-deep);
+        box-shadow: 0 8px 18px rgb(53 108 115 / 19%);
+        color: white;
+      }
+
+      .button-primary:hover {
+        background: var(--blue-dark);
+        box-shadow: 0 10px 24px rgb(53 108 115 / 24%);
+      }
+
+      .button-secondary {
+        border-color: #dce2da;
+        background: rgb(255 254 250 / 76%);
+        color: var(--ink);
+      }
+
+      .hero-note {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-top: 2rem;
+        color: #697777;
+        font-size: 0.82rem;
+      }
+
+      .avatar-stack {
+        display: flex;
+        padding-left: 0.3rem;
+      }
+
+      .avatar-stack span {
+        display: grid;
+        width: 1.9rem;
+        height: 1.9rem;
+        margin-left: -0.3rem;
+        place-items: center;
+        border: 2px solid var(--cream);
+        border-radius: 50%;
+        background: #e2c6ad;
+        font-size: 0.88rem;
+      }
+
+      .avatar-stack span:nth-child(2) {
+        background: #c9dfe0;
+      }
+
+      .avatar-stack span:nth-child(3) {
+        background: #e8dcae;
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 450px;
+      }
+
+      .hero-photo {
+        position: absolute;
+        inset: 0 5% 0 8%;
+        width: 87%;
+        height: 100%;
+        border-radius: 49% 49% 43% 43% / 45% 45% 30% 30%;
+        background: #cedbd1;
+        object-position: 51% 50%;
+        box-shadow: var(--shadow);
+      }
+
+      .photo-sticker {
+        position: absolute;
+        right: 0;
+        bottom: 2.5rem;
+        display: flex;
+        max-width: 220px;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.9rem 1rem;
+        border: 1px solid rgb(37 59 61 / 6%);
+        border-radius: 1rem;
+        background: var(--white);
+        box-shadow: 0 12px 35px rgb(40 58 54 / 12%);
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .photo-sticker strong {
+        display: block;
+        color: var(--ink);
+        font-size: 0.9rem;
+      }
+
+      .sticker-icon {
+        display: grid;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex-shrink: 0;
+        place-items: center;
+        border-radius: 0.75rem;
+        background: #f3e6d9;
+        font-size: 1.25rem;
+      }
+
+      .section {
+        padding: clamp(4rem, 7vw, 6.7rem) 0;
+      }
+
+      .section-white {
+        background: var(--white);
+      }
+
+      .section-inner {
+        width: min(100% - 3rem, 1160px);
+        margin: 0 auto;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-heading h2 {
+        max-width: 630px;
+        margin-bottom: 0.6rem;
+        font-size: clamp(2.15rem, 4vw, 3.35rem);
+        line-height: 1.08;
+      }
+
+      .section-heading p:not(.eyebrow) {
+        max-width: 570px;
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .text-link {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--blue-deep);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      .text-link:hover {
+        color: var(--blue-dark);
+      }
+
+      .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.2rem;
+      }
+
+      .feature-card {
+        overflow: hidden;
+        border: 1px solid #ece9e1;
+        border-radius: 1.2rem;
+        background: #fff;
+        transition: transform 200ms ease, box-shadow 200ms ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow);
+      }
+
+      .feature-image {
+        height: 210px;
+        background: #e7dfd1;
+      }
+
+      .feature-card:nth-child(2) .feature-image {
+        background: #d5e4e0;
+      }
+
+      .feature-card:nth-child(3) .feature-image {
+        background: #e7d2bd;
+      }
+
+      .feature-copy {
+        padding: 1.25rem 1.35rem 1.4rem;
+      }
+
+      .tag {
+        display: inline-flex;
+        margin-bottom: 0.7rem;
+        padding: 0.28rem 0.65rem;
+        border-radius: 999px;
+        background: #edf4f2;
+        color: var(--blue-deep);
+        font-size: 0.7rem;
+        font-weight: 850;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .feature-copy h3 {
+        margin-bottom: 0.45rem;
+        font-size: 1.35rem;
+        line-height: 1.2;
+      }
+
+      .feature-copy p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .breed-section {
+        background:
+          radial-gradient(ellipse at 95% 0%, rgb(220 236 230 / 62%), transparent 35%),
+          var(--cream);
+      }
+
+      .filter-panel {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 1.2rem;
+        margin: 2rem 0 1.3rem;
+        padding: 1.2rem;
+        border: 1px solid #e8e5dc;
+        border-radius: 1.1rem;
+        background: rgb(255 254 250 / 85%);
+      }
+
+      .filter-group p {
+        margin-bottom: 0.55rem;
+        color: #506262;
+        font-size: 0.78rem;
+        font-weight: 850;
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+      }
+
+      .filter-chip {
+        min-height: 35px;
+        padding: 0.42rem 0.8rem;
+        border: 1px solid #dfe4dc;
+        border-radius: 999px;
+        background: #fff;
+        color: #586b6b;
+        cursor: pointer;
+        font-size: 0.78rem;
+        font-weight: 750;
+        transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+      }
+
+      .filter-chip:hover {
+        border-color: #93b9bd;
+      }
+
+      .filter-chip[aria-pressed="true"] {
+        border-color: var(--blue-deep);
+        background: var(--blue-deep);
+        color: white;
+      }
+
+      .result-count {
+        min-height: 1.5rem;
+        margin: 0 0 0.9rem;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .breed-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.1rem;
+      }
+
+      .breed-card {
+        overflow: hidden;
+        border: 1px solid #e8e5dc;
+        border-radius: 1.1rem;
+        background: var(--white);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .breed-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 32px rgb(40 58 54 / 10%);
+      }
+
+      .breed-image {
+        height: 185px;
+        background-color: #d9e4da;
+      }
+
+      .breed-card:nth-child(3n + 2) .breed-image {
+        background-color: #e7ddce;
+      }
+
+      .breed-card:nth-child(3n) .breed-image {
+        background-color: #d7e6e7;
+      }
+
+      .breed-info {
+        padding: 1rem 1.1rem 1.2rem;
+      }
+
+      .breed-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.35rem;
+        color: var(--blue-deep);
+        font-size: 0.74rem;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .breed-info h3 {
+        margin-bottom: 0.35rem;
+        font-size: 1.32rem;
+        line-height: 1.2;
+      }
+
+      .breed-info > p {
+        min-height: 4.4rem;
+        margin-bottom: 0.8rem;
+        color: var(--muted);
+        font-size: 0.87rem;
+        line-height: 1.55;
+      }
+
+      .temperament-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .temperament-list span {
+        padding: 0.25rem 0.52rem;
+        border-radius: 999px;
+        background: #f2eee5;
+        color: #6b594a;
+        font-size: 0.7rem;
+        font-weight: 750;
+      }
+
+      .empty-state {
+        grid-column: 1 / -1;
+        padding: 2.5rem 1rem;
+        border: 1px dashed #cbd5cd;
+        border-radius: 1rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .behavior-section {
+        background: #fff;
+      }
+
+      .behavior-layout {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        align-items: stretch;
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+
+      .state-list {
+        display: grid;
+        align-content: start;
+        gap: 0.65rem;
+      }
+
+      .state-button {
+        display: flex;
+        width: 100%;
+        min-height: 66px;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem 1rem;
+        border: 1px solid var(--line);
+        border-radius: 0.9rem;
+        background: #fff;
+        color: var(--ink);
+        cursor: pointer;
+        text-align: left;
+        transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+      }
+
+      .state-button:hover {
+        transform: translateX(2px);
+        border-color: #a8c9ca;
+      }
+
+      .state-button[aria-pressed="true"] {
+        border-color: #a8c9ca;
+        background: #eff6f3;
+      }
+
+      .state-emoji {
+        display: grid;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex-shrink: 0;
+        place-items: center;
+        border-radius: 0.75rem;
+        background: var(--cream);
+        font-size: 1.25rem;
+      }
+
+      .state-button strong {
+        display: block;
+        font-size: 0.92rem;
+      }
+
+      .state-button small {
+        display: block;
+        margin-top: 0.1rem;
+        color: var(--muted);
+        font-size: 0.76rem;
+      }
+
+      .behavior-card {
+        min-height: 340px;
+        padding: clamp(1.3rem, 3vw, 2rem);
+        border-radius: 1.15rem;
+        background: #f4f5ef;
+      }
+
+      .behavior-card h3 {
+        margin-bottom: 0.45rem;
+        font-size: 1.8rem;
+      }
+
+      .behavior-intro {
+        max-width: 640px;
+        margin-bottom: 1.3rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .signal-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
+      }
+
+      .signal {
+        padding: 0.8rem 0.9rem;
+        border: 1px solid #e4e8df;
+        border-radius: 0.8rem;
+        background: rgb(255 255 255 / 76%);
+      }
+
+      .signal strong {
+        display: block;
+        margin-bottom: 0.2rem;
+        color: var(--brown);
+        font-size: 0.73rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .signal span {
+        color: #526465;
+        font-size: 0.84rem;
+      }
+
+      .tip-box {
+        display: flex;
+        gap: 0.65rem;
+        margin-top: 0.85rem;
+        padding: 0.9rem 1rem;
+        border-radius: 0.8rem;
+        background: #e4efed;
+        color: #345a5e;
+        font-size: 0.86rem;
+      }
+
+      .health-section {
+        background:
+          radial-gradient(ellipse at 100% 5%, rgb(237 226 210 / 64%), transparent 36%),
+          #f4f2eb;
+      }
+
+      .disclaimer {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.9rem;
+        margin: 1.6rem 0 1.4rem;
+        padding: 1.1rem 1.25rem;
+        border: 1px solid #dcb877;
+        border-radius: 0.9rem;
+        background: #fff6e5;
+        color: #624b28;
+      }
+
+      .disclaimer-icon {
+        font-size: 1.25rem;
+        line-height: 1.3;
+      }
+
+      .disclaimer strong {
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+
+      .disclaimer p {
+        margin: 0;
+        font-size: 0.85rem;
+      }
+
+      .health-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.15rem;
+      }
+
+      .wellness-card {
+        padding: clamp(1.3rem, 3vw, 1.8rem);
+        border: 1px solid #e6e2d8;
+        border-radius: 1.1rem;
+        background: var(--white);
+        box-shadow: 0 10px 30px rgb(40 58 54 / 4%);
+      }
+
+      .wellness-card h3 {
+        margin-bottom: 0.4rem;
+        font-size: 1.55rem;
+      }
+
+      .wellness-intro {
+        margin-bottom: 1.1rem;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .progress-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        margin-bottom: 0.55rem;
+        color: #566968;
+        font-size: 0.78rem;
+        font-weight: 750;
+      }
+
+      .progress-track {
+        overflow: hidden;
+        height: 0.48rem;
+        margin-bottom: 1rem;
+        border-radius: 999px;
+        background: #e9eee8;
+      }
+
+      .progress-fill {
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--green);
+        transition: width 180ms ease;
+      }
+
+      .care-list {
+        display: grid;
+        gap: 0.55rem;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .care-item label {
+        display: flex;
+        min-height: 47px;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.65rem 0.75rem;
+        border: 1px solid #ebe9e1;
+        border-radius: 0.72rem;
+        background: #fff;
+        color: #465b5a;
+        cursor: pointer;
+        font-size: 0.87rem;
+        transition: background 150ms ease;
+      }
+
+      .care-item label:hover {
+        background: #f7f8f4;
+      }
+
+      .care-item input {
+        width: 1.1rem;
+        height: 1.1rem;
+        accent-color: var(--green);
+      }
+
+      .care-item input:checked + span {
+        color: #74817c;
+        text-decoration: line-through;
+      }
+
+      .storage-note {
+        min-height: 1.2rem;
+        margin: 0.7rem 0 0;
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+
+      .symptom-label {
+        display: block;
+        margin-bottom: 0.45rem;
+        color: #526262;
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .symptom-select {
+        width: 100%;
+        min-height: 46px;
+        padding: 0.6rem 0.8rem;
+        border: 1px solid #dfe3dc;
+        border-radius: 0.7rem;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .symptom-result {
+        min-height: 190px;
+        margin-top: 0.85rem;
+        padding: 1rem;
+        border: 1px solid #e7e5dd;
+        border-radius: 0.85rem;
+        background: #f9f8f3;
+      }
+
+      .urgency {
+        display: inline-flex;
+        margin-bottom: 0.55rem;
+        padding: 0.26rem 0.58rem;
+        border-radius: 999px;
+        background: #eaf1e8;
+        color: #43654c;
+        font-size: 0.7rem;
+        font-weight: 850;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .urgency-emergency {
+        background: #fbe5df;
+        color: #923e2e;
+      }
+
+      .symptom-result h4 {
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
+      }
+
+      .symptom-result p {
+        margin: 0;
+        color: #596b6a;
+        font-size: 0.85rem;
+      }
+
+      .urgent-note {
+        margin: 0.7rem 0 0;
+        color: #783b2b;
+        font-size: 0.79rem;
+        font-weight: 750;
+      }
+
+      .footer {
+        padding: 2.3rem 0;
+        background: #253b3d;
+        color: #ecf0e9;
+      }
+
+      .footer-inner {
+        display: flex;
+        width: min(100% - 3rem, 1160px);
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        margin: 0 auto;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 1.15rem;
+        font-weight: 850;
+        letter-spacing: -0.06em;
+      }
+
+      .footer-brand .brand-mark {
+        width: 2rem;
+        height: 2rem;
+        background: #b9dce1;
+        font-size: 1rem;
+      }
+
+      .footer p {
+        max-width: 440px;
+        margin: 0;
+        color: #c1ceca;
+        font-size: 0.78rem;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        color: #e7eeeb;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .footer-links a:hover {
+        color: #b9dce1;
+      }
+
+      @media (max-width: 900px) {
+        .header-inner {
+          gap: 1rem;
+        }
+
+        .nav-row {
+          gap: 1rem;
+        }
+
+        .primary-nav {
+          gap: 0.85rem;
+        }
+
+        .primary-nav a {
+          font-size: 0.82rem;
+        }
+
+        .search-wrap {
+          width: 175px;
+        }
+
+        .hero-visual {
+          min-height: 385px;
+        }
+
+        .breed-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 700px) {
+        html {
+          scroll-padding-top: 5rem;
+        }
+
+        .header-inner {
+          position: relative;
+          width: min(100% - 2rem, 1160px);
+          min-height: 68px;
+          flex-wrap: wrap;
+          gap: 0;
+        }
+
+        .header-top {
+          display: flex;
+          width: 100%;
+          min-height: 68px;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .brand {
+          font-size: 1.28rem;
+        }
+
+        .nav-toggle {
+          display: grid;
+        }
+
+        .nav-row {
+          display: none;
+          width: 100%;
+          align-items: stretch;
+          flex-direction: column;
+          gap: 0.85rem;
+          padding: 0 0 1rem;
+        }
+
+        .nav-row.is-open {
+          display: flex;
+        }
+
+        .primary-nav {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .primary-nav a {
+          padding: 0.7rem 0.15rem;
+          border-top: 1px solid var(--line);
+          font-size: 0.92rem;
+        }
+
+        .search-wrap {
+          width: 100%;
+        }
+
+        .hero {
+          padding: 3.3rem 0 3.8rem;
+        }
+
+        .hero-inner {
+          width: min(100% - 2rem, 1160px);
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        h1 {
+          max-width: 550px;
+          font-size: clamp(3rem, 14vw, 4.4rem);
+        }
+
+        .hero-visual {
+          min-height: clamp(270px, 74vw, 390px);
+          margin: 0 0.25rem;
+        }
+
+        .hero-photo {
+          right: 6%;
+          left: 6%;
+          width: 88%;
+        }
+
+        .photo-sticker {
+          right: -0.15rem;
+          bottom: 1rem;
+        }
+
+        .section {
+          padding: 3.8rem 0;
+        }
+
+        .section-inner,
+        .footer-inner {
+          width: min(100% - 2rem, 1160px);
+        }
+
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .featured-grid {
+          grid-template-columns: 1fr;
+          gap: 0.9rem;
+        }
+
+        .feature-image {
+          height: 225px;
+        }
+
+        .filter-panel {
+          grid-template-columns: 1fr;
+          gap: 0.95rem;
+          padding: 1rem;
+        }
+
+        .behavior-layout,
+        .health-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .state-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .state-button {
+          min-height: 74px;
+          align-items: flex-start;
+          padding: 0.65rem;
+        }
+
+        .state-emoji {
+          width: 2.1rem;
+          height: 2.1rem;
+          font-size: 1rem;
+        }
+
+        .state-button strong {
+          font-size: 0.8rem;
+        }
+
+        .state-button small {
+          font-size: 0.68rem;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+      }
+
+      @media (max-width: 450px) {
+        .breed-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .breed-image {
+          height: 210px;
+        }
+
+        .signal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .button-row .button {
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <p>Spec-driven development starter</p>
-      <h1>projectopenspec</h1>
-      <p>Explore the problem. Propose a specification. Apply the plan. Verify the result. Archive completed work.</p>
-      <p><a href="https://github.com/hdasari0506-sudo/projectopenspec">View the project on GitHub</a></p>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-top">
+          <a class="brand" href="#home" aria-label="dogday.com home">
+            <span class="brand-mark" aria-hidden="true">🐾</span>
+            <span>dogday<span style="color: var(--brown)">.</span>com</span>
+          </a>
+          <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-row" aria-label="Open navigation menu">
+            <span aria-hidden="true">☰</span>
+          </button>
+        </div>
+        <div class="nav-row" id="nav-row">
+          <nav class="primary-nav" aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#breeds">Breeds</a>
+            <a href="#behavior">Behavior</a>
+            <a href="#health">Health</a>
+          </nav>
+          <label class="search-wrap">
+            <input class="search-input" id="breed-search" type="search" placeholder="Search breeds..." aria-label="Search dog breeds" autocomplete="off">
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">A happier life, side by side</p>
+            <h1 id="hero-title">For the love of <em>good dogs.</em></h1>
+            <p class="hero-copy">Big questions, muddy paws, and all the little moments in between. Find thoughtful guides for understanding, caring for, and celebrating your best friend.</p>
+            <div class="button-row">
+              <a class="button button-primary" href="#breeds">Find your kind of dog <span aria-hidden="true">→</span></a>
+              <a class="button button-secondary" href="#behavior">Get to know them</a>
+            </div>
+            <div class="hero-note">
+              <span class="avatar-stack" aria-hidden="true"><span>🐶</span><span>🐕</span><span>🦮</span></span>
+              <span>Made for every dog person, and every kind of dog.</span>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <img class="hero-photo" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1100&q=85" alt="A happy golden retriever enjoying a sunny day" fetchpriority="high">
+            <div class="photo-sticker">
+              <span class="sticker-icon" aria-hidden="true">☀️</span>
+              <span><strong>Better days together</strong>One good walk at a time.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-white" aria-labelledby="featured-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">A little wisdom for the walk</p>
+              <h2 id="featured-title">Good reads for good dogs.</h2>
+              <p>Practical, kind-hearted guidance for the questions every dog person asks.</p>
+            </div>
+            <a class="text-link" href="#health">Explore all guides <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="featured-grid">
+            <article class="feature-card">
+              <a href="#breeds" aria-label="Explore breed guides">
+                <img class="feature-image" src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80" alt="Curious dog looking up with bright eyes" loading="lazy">
+                <div class="feature-copy">
+                  <span class="tag">Breed guide</span>
+                  <h3>Find the dog who fits your life</h3>
+                  <p>Meet six much-loved breeds and learn what makes each one special.</p>
+                </div>
+              </a>
+            </article>
+            <article class="feature-card">
+              <a href="#behavior" aria-label="Learn about dog body language">
+                <img class="feature-image" src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&q=80" alt="Small dog relaxing comfortably at home" loading="lazy">
+                <div class="feature-copy">
+                  <span class="tag">Behavior</span>
+                  <h3>What are they trying to tell you?</h3>
+                  <p>Read the whole picture, from a soft gaze to a wiggly tail.</p>
+                </div>
+              </a>
+            </article>
+            <article class="feature-card">
+              <a href="#health" aria-label="Explore everyday dog wellness">
+                <img class="feature-image" src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=80" alt="Dog resting in a cozy spot" loading="lazy">
+                <div class="feature-copy">
+                  <span class="tag">Everyday care</span>
+                  <h3>Small routines, brighter days</h3>
+                  <p>Build a care rhythm that helps your best friend feel their best.</p>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section breed-section" id="breeds" aria-labelledby="breeds-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Meet your match</p>
+              <h2 id="breeds-title">A breed for every kind of day.</h2>
+              <p>Every dog is an individual, but getting to know breed traits is a lovely place to start.</p>
+            </div>
+          </div>
+          <div class="filter-panel" aria-label="Filter dog breeds">
+            <div class="filter-group">
+              <p id="size-label">Size</p>
+              <div class="chip-row" role="group" aria-labelledby="size-label">
+                <button class="filter-chip size-filter" type="button" data-size="All" aria-pressed="true">All sizes</button>
+                <button class="filter-chip size-filter" type="button" data-size="Small" aria-pressed="false">Small</button>
+                <button class="filter-chip size-filter" type="button" data-size="Medium" aria-pressed="false">Medium</button>
+                <button class="filter-chip size-filter" type="button" data-size="Large" aria-pressed="false">Large</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <p id="temperament-label">Temperament <span style="font-weight: 500">(choose any)</span></p>
+              <div class="chip-row" role="group" aria-labelledby="temperament-label">
+                <button class="filter-chip temperament-filter" type="button" data-temperament="Friendly" aria-pressed="false">Friendly</button>
+                <button class="filter-chip temperament-filter" type="button" data-temperament="Energetic" aria-pressed="false">Energetic</button>
+                <button class="filter-chip temperament-filter" type="button" data-temperament="Calm" aria-pressed="false">Calm</button>
+                <button class="filter-chip temperament-filter" type="button" data-temperament="Guard Dog" aria-pressed="false">Guard dog</button>
+              </div>
+            </div>
+          </div>
+          <p class="result-count" id="breed-count" aria-live="polite">Showing 6 breeds</p>
+          <div class="breed-grid" id="breed-grid">
+            <article class="breed-card" data-size="Large" data-temperaments="Friendly Energetic">
+              <img class="breed-image" src="https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?auto=format&fit=crop&w=900&q=80" alt="Labrador retriever sitting outdoors" loading="lazy">
+              <div class="breed-info">
+                <div class="breed-meta"><span>Large</span><span>11–13 years</span></div>
+                <h3>Labrador Retriever</h3>
+                <p>Labs are outgoing companions who often love people, play, and a good swim. Their eager nature makes regular activity and kind training a great fit.</p>
+                <div class="temperament-list"><span>Friendly</span><span>Energetic</span></div>
+              </div>
+            </article>
+            <article class="breed-card" data-size="Small" data-temperaments="Friendly Calm">
+              <img class="breed-image" src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=80" alt="French bulldog relaxing on a sofa" loading="lazy">
+              <div class="breed-info">
+                <div class="breed-meta"><span>Small</span><span>10–12 years</span></div>
+                <h3>French Bulldog</h3>
+                <p>Frenchies are affectionate little companions with a playful streak and a fondness for people. Their short noses need extra care in heat and during exercise.</p>
+                <div class="temperament-list"><span>Friendly</span><span>Calm</span></div>
+              </div>
+            </article>
+            <article class="breed-card" data-size="Large" data-temperaments="Energetic Guard Dog">
+              <img class="breed-image" src="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&fit=crop&w=900&q=80" alt="German shepherd standing alert in a field" loading="lazy">
+              <div class="breed-info">
+                <div class="breed-meta"><span>Large</span><span>9–13 years</span></div>
+                <h3>German Shepherd</h3>
+                <p>Bright, devoted shepherds thrive when they have a purpose and positive training. They need daily movement, enrichment, and thoughtful social experiences.</p>
+                <div class="temperament-list"><span>Energetic</span><span>Guard Dog</span></div>
+              </div>
+            </article>
+            <article class="breed-card" data-size="Large" data-temperaments="Friendly Energetic">
+              <img class="breed-image" src="https://images.unsplash.com/photo-1633722715463-d30f4f325e24?auto=format&fit=crop&w=900&q=80" alt="Golden retriever enjoying time outside" loading="lazy">
+              <div class="breed-info">
+                <div class="breed-meta"><span>Large</span><span>10–12 years</span></div>
+                <h3>Golden Retriever</h3>
+                <p>Goldens are sociable, people-loving dogs who often bring a gentle enthusiasm to family life. They enjoy learning and need regular exercise and coat care.</p>
+                <div class="temperament-list"><span>Friendly</span><span>Energetic</span></div>
+              </div>
+            </article>
+            <article class="breed-card" data-size="Small" data-temperaments="Energetic Friendly">
+              <img class="breed-image" src="https://images.unsplash.com/photo-1612195583950-b8fd34c87093?auto=format&fit=crop&w=900&q=80" alt="Dachshund exploring outdoors" loading="lazy">
+              <div class="breed-info">
+                <div class="breed-meta"><span>Small</span><span>12–16 years</span></div>
+                <h3>Dachshund</h3>
+                <p>Curious and courageous, dachshunds love exploring at their own pace. Their long backs benefit from healthy weight and avoiding repeated high jumps.</p>
+                <div class="temperament-list"><span>Energetic</span><span>Friendly</span></div>
+              </div>
+            </article>
+            <article class="breed-card" data-size="Small" data-temperaments="Friendly Calm">
+              <img class="breed-image" src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=900&q=80" alt="Cavalier King Charles Spaniel with a silky coat" loading="lazy">
+              <div class="breed-info">
+                <div class="breed-meta"><span>Small</span><span>12–15 years</span></div>
+                <h3>Cavalier King Charles Spaniel</h3>
+                <p>Cavaliers are affectionate, adaptable companions who enjoy being close to their people. Regular grooming and preventive veterinary care help support their wellbeing.</p>
+                <div class="temperament-list"><span>Friendly</span><span>Calm</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section behavior-section" id="behavior" aria-labelledby="behavior-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Listen with your eyes</p>
+              <h2 id="behavior-title">A little body language goes a long way.</h2>
+              <p>Choose a feeling to explore common signals. Dogs communicate with their whole body, and context always matters.</p>
+            </div>
+          </div>
+          <div class="behavior-layout">
+            <div class="state-list" role="group" aria-label="Choose a dog body-language state">
+              <button class="state-button" type="button" data-state="relaxed" aria-pressed="true">
+                <span class="state-emoji" aria-hidden="true">🌿</span>
+                <span><strong>Happy &amp; relaxed</strong><small>Soft, loose, comfortable</small></span>
+              </button>
+              <button class="state-button" type="button" data-state="anxious" aria-pressed="false">
+                <span class="state-emoji" aria-hidden="true">🌧️</span>
+                <span><strong>Anxious or stressed</strong><small>Needs space and support</small></span>
+              </button>
+              <button class="state-button" type="button" data-state="alert" aria-pressed="false">
+                <span class="state-emoji" aria-hidden="true">👀</span>
+                <span><strong>Alert or uncomfortable</strong><small>Pause and read the room</small></span>
+              </button>
+              <button class="state-button" type="button" data-state="playful" aria-pressed="false">
+                <span class="state-emoji" aria-hidden="true">🎾</span>
+                <span><strong>Playful</strong><small>Inviting a fun interaction</small></span>
+              </button>
+            </div>
+            <div class="behavior-card" id="behavior-details" aria-live="polite" aria-atomic="true">
+              <p class="eyebrow">Reading the whole dog</p>
+              <h3>Happy &amp; relaxed</h3>
+              <p class="behavior-intro">A comfortable dog often looks soft and loose from nose to tail. Check the full picture and what is happening around them.</p>
+              <div class="signal-grid">
+                <div class="signal"><strong>Tail</strong><span>Loose, easy wag or resting naturally.</span></div>
+                <div class="signal"><strong>Ears</strong><span>Neutral or gently perked, not pinned tight.</span></div>
+                <div class="signal"><strong>Eyes</strong><span>Soft gaze with relaxed facial muscles.</span></div>
+                <div class="signal"><strong>Posture</strong><span>Loose body, easy movement, weight balanced.</span></div>
+              </div>
+              <div class="tip-box"><span aria-hidden="true">💡</span><span><strong>Try this:</strong> Let your dog choose whether to approach; reward calm check-ins and give them room to rest.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section health-section" id="health" aria-labelledby="health-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Wellness, one day at a time</p>
+              <h2 id="health-title">Care that adds up to more tail wags.</h2>
+              <p>A gentle reminder list for everyday routines, plus a starting point for common health questions.</p>
+            </div>
+          </div>
+          <aside class="disclaimer" aria-label="Important veterinary disclaimer">
+            <span class="disclaimer-icon" aria-hidden="true">ⓘ</span>
+            <div>
+              <strong>A note about your dog’s health</strong>
+              <p>This guide is for educational purposes only. It does not diagnose, treat, or replace advice from your veterinarian. If you are worried, contact your vet; seek emergency veterinary care for severe, sudden, or rapidly worsening symptoms.</p>
+            </div>
+          </aside>
+          <div class="health-grid">
+            <section class="wellness-card" aria-labelledby="checklist-title">
+              <h3 id="checklist-title">Today’s care checklist</h3>
+              <p class="wellness-intro">Little everyday moments make a big difference.</p>
+              <div class="progress-row">
+                <span id="care-progress-label">0 of 4 complete</span>
+                <span id="care-progress-percent">0%</span>
+              </div>
+              <div class="progress-track" id="care-progress-track" role="progressbar" aria-label="Daily care tasks completed" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+                <div class="progress-fill" id="care-progress-fill"></div>
+              </div>
+              <ul class="care-list">
+                <li class="care-item"><label><input type="checkbox" data-care="meals"><span>Serve their regular meals</span></label></li>
+                <li class="care-item"><label><input type="checkbox" data-care="water"><span>Refresh their water bowl</span></label></li>
+                <li class="care-item"><label><input type="checkbox" data-care="walk"><span>Take a walk or enjoy active play</span></label></li>
+                <li class="care-item"><label><input type="checkbox" data-care="teeth"><span>Brush teeth or offer vet-approved dental care</span></label></li>
+              </ul>
+              <p class="storage-note" id="storage-note" aria-live="polite">Your checklist resets each day and stays on this device.</p>
+            </section>
+            <section class="wellness-card" aria-labelledby="symptom-title">
+              <h3 id="symptom-title">A symptom starting point</h3>
+              <p class="wellness-intro">Choose a sign for general next-step information.</p>
+              <label class="symptom-label" for="symptom-select">What are you noticing?</label>
+              <select class="symptom-select" id="symptom-select">
+                <option value="">Choose a common sign…</option>
+                <option value="lethargy">Lethargy or low energy</option>
+                <option value="scratching">Scratching or itching</option>
+                <option value="appetite">Loss of appetite</option>
+                <option value="stomach">Vomiting or diarrhea</option>
+                <option value="breathing">Breathing difficulty</option>
+              </select>
+              <div class="symptom-result" id="symptom-result" aria-live="polite" aria-atomic="true">
+                <span class="urgency">General guidance</span>
+                <h4>Every dog is different</h4>
+                <p>Select a sign to see cautious, general information. When in doubt, your veterinary team is the right place to start.</p>
+              </div>
+              <p class="urgent-note">If your dog is struggling to breathe, collapses, has a seizure, or rapidly worsens, contact an emergency veterinarian now.</p>
+            </section>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="brand-mark" aria-hidden="true">🐾</span><span>dogday.com</span></div>
+        <p>For the love of good dogs. Friendly educational guides for a life lived better, together.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#breeds">Breeds</a>
+          <a href="#behavior">Behavior</a>
+          <a href="#health">Health</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      const searchInput = document.querySelector("#breed-search");
+      const breedCards = [...document.querySelectorAll(".breed-card")];
+      const breedGrid = document.querySelector("#breed-grid");
+      const breedCount = document.querySelector("#breed-count");
+      const sizeButtons = [...document.querySelectorAll(".size-filter")];
+      const temperamentButtons = [...document.querySelectorAll(".temperament-filter")];
+      let activeSize = "All";
+      const activeTemperaments = new Set();
+
+      function filterBreeds() {
+        const query = searchInput.value.trim().toLocaleLowerCase();
+        let visible = 0;
+
+        for (const card of breedCards) {
+          const matchesSize = activeSize === "All" || card.dataset.size === activeSize;
+          const temperaments = card.dataset.temperaments.split(" ");
+          const matchesTemperament = [...activeTemperaments].every((temperament) => temperaments.includes(temperament));
+          const matchesSearch = card.textContent.toLocaleLowerCase().includes(query);
+          const show = matchesSize && matchesTemperament && matchesSearch;
+          card.hidden = !show;
+          if (show) visible += 1;
+        }
+
+        const previousEmpty = breedGrid.querySelector(".empty-state");
+        if (previousEmpty) previousEmpty.remove();
+        if (visible === 0) {
+          const empty = document.createElement("p");
+          empty.className = "empty-state";
+          empty.textContent = "No breeds found. Try another search or clear a filter.";
+          breedGrid.append(empty);
+        }
+
+        breedCount.textContent = `Showing ${visible} ${visible === 1 ? "breed" : "breeds"}`;
+      }
+
+      for (const button of sizeButtons) {
+        button.addEventListener("click", () => {
+          activeSize = button.dataset.size;
+          for (const sizeButton of sizeButtons) {
+            sizeButton.setAttribute("aria-pressed", String(sizeButton === button));
+          }
+          filterBreeds();
+        });
+      }
+
+      for (const button of temperamentButtons) {
+        button.addEventListener("click", () => {
+          const temperament = button.dataset.temperament;
+          if (activeTemperaments.has(temperament)) {
+            activeTemperaments.delete(temperament);
+            button.setAttribute("aria-pressed", "false");
+          } else {
+            activeTemperaments.add(temperament);
+            button.setAttribute("aria-pressed", "true");
+          }
+          filterBreeds();
+        });
+      }
+
+      searchInput.addEventListener("input", filterBreeds);
+
+      const behaviorStates = {
+        relaxed: {
+          title: "Happy & relaxed",
+          intro: "A comfortable dog often looks soft and loose from nose to tail. Check the full picture and what is happening around them.",
+          signals: ["Loose, easy wag or resting naturally.", "Neutral or gently perked, not pinned tight.", "Soft gaze with relaxed facial muscles.", "Loose body, easy movement, weight balanced."],
+          tip: "Let your dog choose whether to approach; reward calm check-ins and give them room to rest.",
+        },
+        anxious: {
+          title: "Anxious or stressed",
+          intro: "Stress can be subtle and may include several signals together. The dog may be asking for more space or a break.",
+          signals: ["Tucked, low, or very still; may wag tensely.", "Pulled back, flattened, or repeatedly shifting.", "Looking away, blinking, or showing the whites.", "Crouched, weight shifted back, tense or frozen."],
+          tip: "Lower the pressure: calmly create distance from the trigger, offer a quiet retreat, and let your dog settle without forcing interaction.",
+        },
+        alert: {
+          title: "Alert or uncomfortable",
+          intro: "A still, focused dog needs room to process. Stiffness or escalation means it is time to calmly increase distance.",
+          signals: ["Held high or stiff; movement may stop.", "Forward, very still, or tightly pinned back.", "Fixed, hard focus or a visible whale eye.", "Rigid or leaning forward; may freeze or block."],
+          tip: "Do not reach for, corner, scold, or test the dog. Create space safely; if this happens often, consult a qualified force-free trainer or veterinary behavior professional.",
+        },
+        playful: {
+          title: "Playful",
+          intro: "Play often looks bouncy and loose, with breaks and give-and-take. A play bow can be an invitation, but watch both dogs for comfort.",
+          signals: ["Loose wag that moves with the body.", "Relaxed and responsive to movement.", "Bright, soft eyes with frequent breaks.", "Bouncy movement; front end may dip in a play bow."],
+          tip: "Keep play short and supervised. Pause often; continue only when both dogs choose to re-engage with relaxed bodies.",
+        },
+      };
+
+      const behaviorDetails = document.querySelector("#behavior-details");
+      const signalNames = ["Tail", "Ears", "Eyes", "Posture"];
+
+      function showBehavior(state) {
+        const details = behaviorStates[state];
+        behaviorDetails.innerHTML = `
+          <p class="eyebrow">Reading the whole dog</p>
+          <h3>${details.title}</h3>
+          <p class="behavior-intro">${details.intro}</p>
+          <div class="signal-grid">
+            ${details.signals.map((signal, index) => `<div class="signal"><strong>${signalNames[index]}</strong><span>${signal}</span></div>`).join("")}
+          </div>
+          <div class="tip-box"><span aria-hidden="true">💡</span><span><strong>Try this:</strong> ${details.tip}</span></div>`;
+      }
+
+      for (const button of document.querySelectorAll(".state-button")) {
+        button.addEventListener("click", () => {
+          for (const stateButton of document.querySelectorAll(".state-button")) {
+            stateButton.setAttribute("aria-pressed", String(stateButton === button));
+          }
+          showBehavior(button.dataset.state);
+        });
+      }
+
+      const careInputs = [...document.querySelectorAll("[data-care]")];
+      const progressLabel = document.querySelector("#care-progress-label");
+      const progressPercent = document.querySelector("#care-progress-percent");
+      const progressTrack = document.querySelector("#care-progress-track");
+      const progressFill = document.querySelector("#care-progress-fill");
+      const storageNote = document.querySelector("#storage-note");
+      const today = new Date();
+      const dayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+      const storageKey = `dogday-care-${dayKey}`;
+      let storageAvailable = true;
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        if (Array.isArray(saved)) {
+          for (const input of careInputs) input.checked = saved.includes(input.dataset.care);
+        }
+      } catch {
+        storageAvailable = false;
+        storageNote.textContent = "Checklist is available for this visit; this browser does not allow saving it.";
+      }
+
+      function updateCareProgress() {
+        const complete = careInputs.filter((input) => input.checked).length;
+        const percent = Math.round((complete / careInputs.length) * 100);
+        progressLabel.textContent = `${complete} of ${careInputs.length} complete`;
+        progressPercent.textContent = `${percent}%`;
+        progressTrack.setAttribute("aria-valuenow", String(complete));
+        progressFill.style.width = `${percent}%`;
+
+        if (storageAvailable) {
+          try {
+            localStorage.setItem(storageKey, JSON.stringify(careInputs.filter((input) => input.checked).map((input) => input.dataset.care)));
+            storageNote.textContent = "Your checklist resets each day and stays on this device.";
+          } catch {
+            storageAvailable = false;
+            storageNote.textContent = "Checklist is available for this visit; changes could not be saved on this device.";
+          }
+        }
+      }
+
+      for (const input of careInputs) input.addEventListener("change", updateCareProgress);
+      updateCareProgress();
+
+      const symptomGuidance = {
+        lethargy: {
+          urgency: "Call your vet for guidance",
+          emergency: false,
+          title: "Notice changes in their energy",
+          text: "A quiet day can have many causes. Contact your veterinarian if low energy is unusual, continues, or comes with other changes; seek urgent care for collapse, difficulty waking, or rapid worsening.",
+        },
+        scratching: {
+          urgency: "Arrange a routine vet visit",
+          emergency: false,
+          title: "Persistent itching deserves attention",
+          text: "Scratching can have several causes, and a veterinarian can help identify them. Arrange a visit for ongoing itching, irritated skin, hair loss, or discomfort; urgent swelling or trouble breathing needs emergency care.",
+        },
+        appetite: {
+          urgency: "Call your vet for guidance",
+          emergency: false,
+          title: "A change in appetite can matter",
+          text: "If your dog skips food or has a sudden appetite change, consider their overall behavior and contact your veterinary team for advice, especially for puppies, seniors, or dogs with health conditions.",
+        },
+        stomach: {
+          urgency: "Call your vet for guidance",
+          emergency: false,
+          title: "Stomach upset has many possible causes",
+          text: "Contact a veterinarian for repeated vomiting or diarrhea, blood, pain, weakness, or if you are unsure what your dog may have eaten. Do not give human medication unless your vet directs you.",
+        },
+        breathing: {
+          urgency: "Emergency veterinary care now",
+          emergency: true,
+          title: "Breathing difficulty is an emergency",
+          text: "Labored, noisy, or struggling breathing needs immediate veterinary attention. Call an emergency veterinary clinic now and follow their instructions while you travel.",
+        },
+      };
+
+      const symptomSelect = document.querySelector("#symptom-select");
+      const symptomResult = document.querySelector("#symptom-result");
+
+      symptomSelect.addEventListener("change", () => {
+        const details = symptomGuidance[symptomSelect.value];
+        if (!details) {
+          symptomResult.innerHTML = `
+            <span class="urgency">General guidance</span>
+            <h4>Every dog is different</h4>
+            <p>Select a sign to see cautious, general information. When in doubt, your veterinary team is the right place to start.</p>`;
+          return;
+        }
+
+        symptomResult.innerHTML = `
+          <span class="urgency ${details.emergency ? "urgency-emergency" : ""}">${details.urgency}</span>
+          <h4>${details.title}</h4>
+          <p>${details.text}</p>`;
+      });
+
+      const navToggle = document.querySelector("#nav-toggle");
+      const navRow = document.querySelector("#nav-row");
+
+      navToggle.addEventListener("click", () => {
+        const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+        navToggle.setAttribute("aria-expanded", String(!isOpen));
+        navToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+        navToggle.querySelector("span").textContent = isOpen ? "☰" : "×";
+        navRow.classList.toggle("is-open", !isOpen);
+      });
+
+      for (const link of document.querySelectorAll(".primary-nav a")) {
+        link.addEventListener("click", () => {
+          navToggle.setAttribute("aria-expanded", "false");
+          navToggle.setAttribute("aria-label", "Open navigation menu");
+          navToggle.querySelector("span").textContent = "☰";
+          navRow.classList.remove("is-open");
+        });
+      }
+    </script>
   </body>
 </html>

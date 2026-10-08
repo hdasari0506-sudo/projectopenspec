@@ -1,8 +1,8 @@
-# projectopenspec
+# dogday.com
 
-A starter project for spec-driven product and software engineering work.
+A friendly dog-care website with breed discovery, body-language guidance, and everyday wellness tools. The static app is served from `site/` and deployed to GitHub Pages.
 
-## Repository workflow
+## Project workflow
 
 1. Explore the problem and codebase.
 2. Propose a change with `proposal.md`, a specification in `specs/`, `design.md`, and `tasks.md`.
@@ -11,6 +11,14 @@ A starter project for spec-driven product and software engineering work.
 5. Archive completed changes in `archive/`.
 
 Claude Code project guidance and the `/opsx:*` workflow are in `.claude/`.
+
+## Website features
+
+- Searchable dog breed directory with combined size and temperament filters.
+- Interactive dog body-language guide with context and practical tips.
+- Daily care checklist saved locally by date.
+- Educational symptom guide with prominent veterinary disclaimers and conservative emergency direction.
+- Responsive navigation and layouts for mobile and desktop.
 
 ## Checks
 
@@ -24,6 +32,4 @@ npm ci
 npm test
 ```
 
-## Website
-
-The static GitHub Pages landing page is in `site/`. The Playwright smoke test starts a local static server for this page automatically.
+The Playwright config starts a local static server for `site/index.html` automatically.

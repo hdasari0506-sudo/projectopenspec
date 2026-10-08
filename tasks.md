@@ -1,22 +1,22 @@
-# Tasks
+# Tasks: dogday.com
 
-## Phase 1: Discovery and specification
+## Phase 1: Foundation and layout
 
-- [x] Confirm GitHub Pages as the hosting target and assess repository visibility constraints.
-- [x] Record the account-plan requirement to make the repository public for Pages.
-- [x] Specify CI checks and deployment conditions in `specs/github-ci-pages.md`.
-- [x] Create the phased delivery plan in `plans/github-ci-pages-plan.md`.
+- [x] Replace the starter homepage with the responsive semantic site shell, navigation, hero, featured content, and footer.
+- [x] Add shared color, type, spacing, card, and responsive styles.
+- [x] Gate: the page loads with correct title, sections, and responsive navigation.
 
-## Phase 2: Implementation
+## Phase 2: Interactive dog-care sections
 
-- [x] Add a static landing page and local Playwright test server.
-- [x] Add CI and GitHub Pages deployment workflow.
-- [x] Create the public GitHub repository and push the default branch.
-- [x] Enable GitHub Pages using GitHub Actions.
+- [x] Add the six-breed directory with live search and combined size/temperament filters.
+- [x] Add selectable behavior states and accessible signal/tip details.
+- [x] Add daily checklist progress with date-scoped local persistence.
+- [x] Add symptom guide with routine/emergency information and medical disclaimers.
+- [x] Gate: Playwright verifies each interaction, including mobile navigation and no-results behavior.
 
-## Phase 3: Verification and archive
+## Phase 3: Verification and release
 
-- [x] Check the implementation against the specification.
-- [x] Resolve any defects or mismatches.
-- [x] Confirm a successful Actions run deploys the site.
-- [x] Record the final Pages URL: https://hdasari0506-sudo.github.io/projectopenspec/
+- [x] Run unit, integration, and browser automation tests.
+- [x] Fix mismatches against the specification.
+- [ ] Verify the live Pages deployment after changes are pushed.
+- [ ] Mark the release checklist complete and archive only if requested.
