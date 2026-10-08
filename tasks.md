@@ -18,5 +18,5 @@
 
 - [x] Run unit, integration, and browser automation tests.
 - [x] Fix mismatches against the specification.
-- [ ] Verify the live Pages deployment after changes are pushed.
+- [x] Verify the live Pages deployment after changes are pushed.
 - [ ] Mark the release checklist complete and archive only if requested.

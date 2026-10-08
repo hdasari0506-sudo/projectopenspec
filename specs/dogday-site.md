@@ -87,11 +87,11 @@ No backend schema or application data changes. Breed and educational guide conte
 
 ## 8. Release checklist
 
-- [ ] Required homepage and navigation content is present.
-- [ ] All filters and interactive tools work on desktop and mobile.
-- [ ] Health disclaimer and conservative emergency guidance are visible.
-- [ ] Automated tests pass.
-- [ ] GitHub Pages deployment renders the completed site.
+- [x] Required homepage and navigation content is present.
+- [x] All filters and interactive tools work on desktop and mobile.
+- [x] Health disclaimer and conservative emergency guidance are visible.
+- [x] Automated tests pass.
+- [x] GitHub Pages deployment renders the completed site: https://hdasari0506-sudo.github.io/projectopenspec/
 
 ## Open Questions
 
