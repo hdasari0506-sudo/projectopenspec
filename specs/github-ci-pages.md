@@ -6,7 +6,7 @@ The project needs a GitHub repository with automated checks and a repeatable dep
 
 Goals:
 
-- Publish the project as a private GitHub repository.
+- Publish the project on GitHub with an automated check and deployment path.
 - Run the existing Vitest and Playwright tests on pushes and pull requests.
 - Publish a small static landing page to GitHub Pages after checks pass on `main`.
 
@@ -14,7 +14,7 @@ Goals:
 
 - The project has tests under `tests/`, using Vitest and Playwright.
 - Playwright needs a locally served target; its smoke test will run against the new static landing page.
-- The repository should remain private; the Pages site is allowed to be public.
+- GitHub Pages was unavailable for a private repository on the current account plan, so the repository and Pages site are public.
 - Deployment is limited to static content under `site/`.
 
 ## Functional specification
@@ -47,15 +47,15 @@ No application data or schema changes.
 1. Add the static landing page and local test server.
 2. Add the CI and Pages deployment workflow.
 3. Add repository documentation and ignore generated artifacts.
-4. Create a private GitHub repository, push the default branch, and enable Pages via Actions.
+4. Create a public GitHub repository, push the default branch, and enable Pages via Actions.
 
 ## Release checklist
 
-- [ ] Tests pass locally and in GitHub Actions.
-- [ ] Repository is private and contains the project source.
-- [ ] GitHub Pages is configured to deploy with GitHub Actions.
-- [ ] Successful default-branch CI deploys the static landing page.
+- [x] Tests pass locally and in GitHub Actions.
+- [x] The public repository contains the project source.
+- [x] GitHub Pages is configured to deploy with GitHub Actions.
+- [x] Successful default-branch CI deploys the static landing page: https://hdasari0506-sudo.github.io/projectopenspec/
 
 ## Open questions
 
-- Hosting was selected as GitHub Pages; the site is permitted to be public while the repository remains private.
+- Hosting was selected as GitHub Pages. The account plan required making the repository itself public.
